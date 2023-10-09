@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SpalshScreen extends StatefulWidget {
-  const SpalshScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SpalshScreen> createState() => _SpalshScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SpalshScreenState extends State<SpalshScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold();
