@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,9 +12,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final height = MediaQuery.sizeOf(context as BuildContext).height * 1;
-  final width = MediaQuery.sizeOf(context as BuildContext).width * 1;
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
       () {
         Navigator.push(
-          context as BuildContext,
+          context,
           MaterialPageRoute(
             builder: (context) => const HomeScreen(),
           ),
@@ -34,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height * 1;
+    final width = MediaQuery.sizeOf(context).width * 1;
     return Scaffold(
       // ignore: avoid_unnecessary_containers
       body: Container(
