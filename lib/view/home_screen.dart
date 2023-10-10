@@ -13,9 +13,19 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+enum NewsFilterList {
+  bbcNews,
+  aryNews,
+  bbcSports,
+  alJazeera,
+}
+
+String name = 'bbc-news';
+
 class _HomeScreenState extends State<HomeScreen> {
   NewsViewModel newsViewModel = NewsViewModel();
   final format = DateFormat('MM, dd, yyyy');
+  NewsFilterList? selectedMenu;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height * 1;
@@ -38,6 +48,59 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          PopupMenuButton<NewsFilterList>(
+            initialValue: selectedMenu,
+            icon: const Icon(
+              Icons.more_vert_rounded,
+              color: Colors.black,
+            ),
+            onSelected: (NewsFilterList item) {
+              if (NewsFilterList.bbcNews.name == item.name) {
+                name = 'bbc-news';
+              }
+              if (NewsFilterList.aryNews.name == item.name) {
+                name = 'ary-news';
+              }
+              if (NewsFilterList.bbcSports.name == item.name) {
+                name = 'bbc-sport';
+              }
+              if (NewsFilterList.alJazeera.name == item.name) {
+                name = 'al-jazeera-english';
+              }
+
+              setState(() {
+                selectedMenu = item;
+              });
+            },
+            itemBuilder: (context) => <PopupMenuEntry<NewsFilterList>>[
+              const PopupMenuItem<NewsFilterList>(
+                value: NewsFilterList.bbcNews,
+                child: Text(
+                  'BBC News',
+                ),
+              ),
+              const PopupMenuItem<NewsFilterList>(
+                value: NewsFilterList.aryNews,
+                child: Text(
+                  'ARY News',
+                ),
+              ),
+              const PopupMenuItem<NewsFilterList>(
+                value: NewsFilterList.bbcSports,
+                child: Text(
+                  'BBC Sports',
+                ),
+              ),
+              const PopupMenuItem<NewsFilterList>(
+                value: NewsFilterList.alJazeera,
+                child: Text(
+                  'Al-Jazeera News',
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -45,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: height * 0.55,
             width: width,
             child: FutureBuilder<NewsChannelsHeadlinesModel>(
-              future: newsViewModel.fetchNewsChannelsHeadlinesApi(),
+              future: newsViewModel.fetchNewsChannelsHeadlinesApi(name),
               builder: (BuildContext context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -111,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Text(
                                         snapshot.data!.articles![index].title
                                             .toString(),
-                                        maxLines: 2,
+                                        maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.poppins(
                                           fontSize: 17,
@@ -134,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.poppins(
                                               fontSize: 13,
-                                              // color: Colors.blue,
+                                              color: Colors.blue,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
