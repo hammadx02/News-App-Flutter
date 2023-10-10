@@ -53,7 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 }
-                return Container();
+                return ListView.builder(
+                  itemCount: snapshot.data!.articles!.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {},
+                );
               },
             ),
           ),
