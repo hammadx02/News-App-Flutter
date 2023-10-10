@@ -1,127 +1,95 @@
-// To parse this JSON data, do
-//
-//     final newsChannelsHeadlinesModel = newsChannelsHeadlinesModelFromJson(jsonString);
-
-import 'dart:convert';
-
-NewsChannelsHeadlinesModel newsChannelsHeadlinesModelFromJson(String str) => NewsChannelsHeadlinesModel.fromJson(json.decode(str));
-
-String newsChannelsHeadlinesModelToJson(NewsChannelsHeadlinesModel data) => json.encode(data.toJson());
-
 class NewsChannelsHeadlinesModel {
-    String? status;
-    int? totalResults;
-    List<Article>? articles;
+  String? status;
+  int? totalResults;
+  List<Articles>? articles;
 
-    NewsChannelsHeadlinesModel({
-        this.status,
-        this.totalResults,
-        this.articles,
-    });
+  NewsChannelsHeadlinesModel({this.status, this.totalResults, this.articles});
 
-    factory NewsChannelsHeadlinesModel.fromJson(Map<String, dynamic> json) => NewsChannelsHeadlinesModel(
-        status: json["status"],
-        totalResults: json["totalResults"],
-        articles: json["articles"] == null ? [] : List<Article>.from(json["articles"]!.map((x) => Article.fromJson(x))),
-    );
+  NewsChannelsHeadlinesModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    totalResults = json['totalResults'];
+    if (json['articles'] != null) {
+      articles = <Articles>[];
+      json['articles'].forEach((v) {
+        articles!.add(new Articles.fromJson(v));
+      });
+    }
+  }
 
-    Map<String, dynamic> toJson() => {
-        "status": status,
-        "totalResults": totalResults,
-        "articles": articles == null ? [] : List<dynamic>.from(articles!.map((x) => x.toJson())),
-    };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['totalResults'] = this.totalResults;
+    if (this.articles != null) {
+      data['articles'] = this.articles!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class Article {
-    Source? source;
-    Author? author;
-    String? title;
-    String? description;
-    String? url;
-    String? urlToImage;
-    DateTime? publishedAt;
-    String? content;
+class Articles {
+  Source? source;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
 
-    Article({
-        this.source,
-        this.author,
-        this.title,
-        this.description,
-        this.url,
-        this.urlToImage,
-        this.publishedAt,
-        this.content,
-    });
+  Articles(
+      {this.source,
+      this.author,
+      this.title,
+      this.description,
+      this.url,
+      this.urlToImage,
+      this.publishedAt,
+      this.content});
 
-    factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: json["source"] == null ? null : Source.fromJson(json["source"]),
-        author: authorValues.map[json["author"]]!,
-        title: json["title"],
-        description: json["description"],
-        url: json["url"],
-        urlToImage: json["urlToImage"],
-        publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
-        content: json["content"],
-    );
+  Articles.fromJson(Map<String, dynamic> json) {
+    source =
+        json['source'] != null ? new Source.fromJson(json['source']) : null;
+    author = json['author'];
+    title = json['title'];
+    description = json['description'];
+    url = json['url'];
+    urlToImage = json['urlToImage'];
+    publishedAt = json['publishedAt'];
+    content = json['content'];
+  }
 
-    Map<String, dynamic> toJson() => {
-        "source": source?.toJson(),
-        "author": authorValues.reverse[author],
-        "title": title,
-        "description": description,
-        "url": url,
-        "urlToImage": urlToImage,
-        "publishedAt": publishedAt?.toIso8601String(),
-        "content": content,
-    };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.source != null) {
+      data['source'] = this.source!.toJson();
+    }
+    data['author'] = this.author;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['url'] = this.url;
+    data['urlToImage'] = this.urlToImage;
+    data['publishedAt'] = this.publishedAt;
+    data['content'] = this.content;
+    return data;
+  }
 }
-
-enum Author {
-    BBC_NEWS,
-    BBC_SPORT
-}
-
-final authorValues = EnumValues({
-    "BBC News": Author.BBC_NEWS,
-    "BBC Sport": Author.BBC_SPORT
-});
 
 class Source {
-    Id? id;
-    Author? name;
+  String? id;
+  String? name;
 
-    Source({
-        this.id,
-        this.name,
-    });
+  Source({this.id, this.name});
 
-    factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: idValues.map[json["id"]]!,
-        name: authorValues.map[json["name"]]!,
-    );
+  Source.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
 
-    Map<String, dynamic> toJson() => {
-        "id": idValues.reverse[id],
-        "name": authorValues.reverse[name],
-    };
-}
-
-enum Id {
-    BBC_NEWS
-}
-
-final idValues = EnumValues({
-    "bbc-news": Id.BBC_NEWS
-});
-
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        reverseMap = map.map((k, v) => MapEntry(v, k));
-        return reverseMap;
-    }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    return data;
+  }
 }

@@ -134,6 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.poppins(
                                               fontSize: 13,
+                                              // color: Colors.blue,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
