@@ -126,7 +126,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             Expanded(
                               child: Container(
                                 height: height * .18,
-                                padding: EdgeInsets.only(left: 15),
+                                padding: const EdgeInsets.only(left: 15),
                                 child: Column(
                                   children: [
                                     Text(
@@ -139,7 +139,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
