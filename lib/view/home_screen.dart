@@ -7,7 +7,6 @@ import 'package:news_app/models/news_channels_headlines_model.dart';
 import 'package:news_app/view/categories_screen.dart';
 import 'package:news_app/view/news_details_screen.dart';
 import 'package:news_app/view_models/news_view_models.dart';
-
 import '../models/categories_news_models.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           icon: Image.asset(
             'images/category_icon.png',
-            height: 30,
-            width: 30,
+            height: 20,
+            width: 20,
           ),
         ),
         title: Text(
@@ -292,75 +291,107 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 15.0),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: CachedNetworkImage(
-                                imageUrl: snapshot
-                                    .data!.articles![index].urlToImage
-                                    .toString(),
-                                fit: BoxFit.cover,
-                                height: height * .18,
-                                width: width * .3,
-                                placeholder: (context, url) => Container(
-                                  child: spinkit2(),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(
-                                  Icons.error_outline_rounded,
-                                  color: Colors.red,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewsDetailsScreen(
+                                  newsImage: snapshot
+                                      .data!.articles![index].urlToImage
+                                      .toString(),
+                                  newsTitle: snapshot
+                                      .data!.articles![index].title
+                                      .toString(),
+                                  newsDate: snapshot
+                                      .data!.articles![index].publishedAt
+                                      .toString(),
+                                  newsAuthor: snapshot
+                                      .data!.articles![index].author
+                                      .toString(),
+                                  newsDesc: snapshot
+                                      .data!.articles![index].description
+                                      .toString(),
+                                  newsContent: snapshot
+                                      .data!.articles![index].content
+                                      .toString(),
+                                  newsSource: snapshot
+                                      .data!.articles![index].source!.name
+                                      .toString(),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: height * .18,
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      snapshot.data!.articles![index].title
-                                          .toString(),
-                                      maxLines: 3,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.w700,
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: CachedNetworkImage(
+                                  imageUrl: snapshot
+                                      .data!.articles![index].urlToImage
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  height: height * .18,
+                                  width: width * .3,
+                                  placeholder: (context, url) => Container(
+                                    child: spinkit2(),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.error_outline_rounded,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: height * .18,
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        snapshot.data!.articles![index].title
+                                            .toString(),
+                                        maxLines: 3,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
-                                    ),
-                                    const Spacer(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            snapshot.data!.articles![index]
-                                                .source!.name
-                                                .toString(),
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 14,
-                                              color: Colors.blueAccent,
-                                              fontWeight: FontWeight.w600,
+                                      const Spacer(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              snapshot.data!.articles![index]
+                                                  .source!.name
+                                                  .toString(),
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 14,
+                                                color: Colors.blueAccent,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Text(
-                                          format.format(dateTime),
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            color: Colors.black54,
-                                            fontWeight: FontWeight.w500,
+                                          Text(
+                                            format.format(dateTime),
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 15,
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },
