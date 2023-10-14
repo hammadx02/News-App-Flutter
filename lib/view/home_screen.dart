@@ -35,6 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.push(
@@ -53,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'News',
           style: GoogleFonts.poppins(
+            color: Colors.black87,
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),
