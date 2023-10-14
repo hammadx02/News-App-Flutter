@@ -34,7 +34,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.grey[600],
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
@@ -55,7 +67,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: categoryName == categoriesList[index]
-                              ? Colors.blue
+                              ? Colors.blueAccent
                               : Colors.grey.shade300,
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -89,7 +101,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
                       child: SpinKitCircle(
-                        color: Colors.blue,
+                        color: Colors.blueAccent,
                         size: 50,
                       ),
                     );
@@ -151,7 +163,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                 .toString(),
                                             style: GoogleFonts.poppins(
                                               fontSize: 14,
-                                              color: Colors.blue,
+                                              color: Colors.blueAccent,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
