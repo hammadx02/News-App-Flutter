@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/view/categories_screen.dart';
 
-import 'view/splash_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }
