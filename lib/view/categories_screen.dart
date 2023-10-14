@@ -151,7 +151,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                 .toString(),
                                             style: GoogleFonts.poppins(
                                               fontSize: 14,
-                                              color: Colors.black54,
+                                              color: Colors.blue,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -160,6 +160,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                           format.format(dateTime),
                                           style: GoogleFonts.poppins(
                                             fontSize: 15,
+                                            color: Colors.black54,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
