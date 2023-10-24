@@ -148,6 +148,18 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                 SizedBox(
                   height: height * 0.03,
                 ),
+                // Text(
+                //   widget.newsContent,
+                //   softWrap: true,
+                //   style: GoogleFonts.poppins(
+                //     fontSize: 15,
+                //     color: Colors.black87,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
               ],
             ),
           ),
