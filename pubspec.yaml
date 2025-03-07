@@ -13,14 +13,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_animate: ^4.5.2
   flutter_spinkit: ^5.2.0
   google_fonts: ^5.1.0
   http: ^1.1.0
   intl: null
+  shimmer: ^3.0.0
   win32: ^5.11.0
 
 dev_dependencies:
-
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
