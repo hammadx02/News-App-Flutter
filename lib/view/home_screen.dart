@@ -849,17 +849,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:news_app/models/news_channels_headlines_model.dart';
 import 'package:news_app/view/categories_screen.dart';
-import 'package:news_app/view/news_details_screen.dart';
 import 'package:news_app/view_models/news_view_models.dart';
 
-import '../widgets/news_source_selector.dart';
 import '../widgets/headlines_carousel.dart';
 import '../widgets/latest_news_list.dart';
-import '../widgets/custom_icon_button.dart';
-import '../utils/animations.dart';
+import '../widgets/news_source_selector.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
