@@ -2449,7 +2449,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         newsDesc: article.description ?? '',
                         newsContent: article.content ?? '',
                         newsSource: article.source?.name ?? '',
-                        heroTag: 'news_${article.title}',
+                        heroTag: 'news_image_home_${index}',
                       ),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
@@ -2652,7 +2652,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           newsDesc: article.description ?? '',
                           newsContent: article.content ?? '',
                           newsSource: article.source?.name ?? '',
-                          heroTag: 'news_${article.title}',
+                          heroTag: 'news_image_recommended_${index}',
                         ),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {

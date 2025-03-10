@@ -989,7 +989,6 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen>
                     ),
                   ],
                 ),
-                margin: const EdgeInsets.only(top: -30),
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
