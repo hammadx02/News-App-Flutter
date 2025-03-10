@@ -1255,7 +1255,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               sliver: LatestNewsList(
                 newsViewModel: newsViewModel,
                 format: format,
-              ).fadeInSlideUp(delay: 600.ms),
+              ),
             ),
           ],
         ),

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/models/categories_news_models.dart';
 import 'package:shimmer/shimmer.dart';
-
+import 'package:news_app/models/categories_news_models.dart';
 import 'package:news_app/view/news_details_screen.dart';
 import 'package:news_app/view_models/news_view_models.dart';
 
@@ -24,10 +23,23 @@ class LatestNewsList extends StatelessWidget {
       future: newsViewModel.fetchNewsCategoriesApi('General'),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
+          // Loading state: Return a SliverList with shimmer placeholders
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => _buildLatestNewsShimmer(),
-              childCount: 5,
+              childCount: 5, // Number of shimmer placeholders
+            ),
+          );
+        }
+
+        if (snapshot.hasError) {
+          // Error state: Return a SliverToBoxAdapter with an error message
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                'Failed to load news',
+                style: GoogleFonts.poppins(),
+              ),
             ),
           );
         }
@@ -35,6 +47,7 @@ class LatestNewsList extends StatelessWidget {
         if (!snapshot.hasData ||
             snapshot.data!.articles == null ||
             snapshot.data!.articles!.isEmpty) {
+          // No data state: Return a SliverToBoxAdapter with a message
           return SliverToBoxAdapter(
             child: Center(
               child: Text(
@@ -45,6 +58,7 @@ class LatestNewsList extends StatelessWidget {
           );
         }
 
+        // Data state: Return a SliverList with the news articles
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -176,8 +190,8 @@ class LatestNewsList extends StatelessWidget {
                     ),
                   ),
                 )
-                    .animate(delay: Duration(milliseconds: index * 50))
-                    .fadeIn(duration: 500.ms)
+                    .animate(delay: Duration(milliseconds: index * 700))
+                    .fadeIn(duration: 900.ms)
                     .slideX(begin: index.isEven ? -20 : 20, end: 0),
               );
             },
