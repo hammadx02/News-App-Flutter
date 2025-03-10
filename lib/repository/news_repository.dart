@@ -1,31 +1,55 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:flutter/foundation.dart';
+
 import 'package:news_app/models/categories_news_models.dart';
 import 'package:news_app/models/news_channels_headlines_model.dart';
+import 'package:http/http.dart' as http;
 
 class NewsRepository {
-  Future<NewsChannelsHeadlinesModel> fetchNewsChannelsHeadlinesApi(
-      String channelName) async {
-    String url =
-        'https://newsapi.org/v2/top-headlines?sources=$channelName&apiKey=35a778b7c85a46418b137cafe2d8bd59';
-    final response = await http.get(Uri.parse(url));
+  static const String apiKey = 'b53455bd3edf41f19769aaf32d4cdd1d';
+  static const String baseUrl = 'https://newsapi.org/v2';
 
-    if (response.statusCode == 200) {
-      final body = jsonDecode(response.body);
-      return NewsChannelsHeadlinesModel.fromJson(body);
+  Future<NewsChannelsHeadlinesModel> fetchNewsChannelsHeadlinesApi(
+      String newsChannel) async {
+    final url = '$baseUrl/top-headlines?sources=$newsChannel&apiKey=$apiKey';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (kDebugMode) {
+        print(response.body);
+      }
+
+      if (response.statusCode == 200) {
+        final body = jsonDecode(response.body);
+        return NewsChannelsHeadlinesModel.fromJson(body);
+      } else {
+        throw Exception('Failed to fetch headlines');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
     }
-    throw Exception('Error');
   }
 
   Future<CategoriesNewsModel> fetchNewsCategoriesApi(String category) async {
-    String url =
-        'https://newsapi.org/v2/everything?q=$category&apiKey=35a778b7c85a46418b137cafe2d8bd59';
-    final response = await http.get(Uri.parse(url));
+    final url = '$baseUrl/everything?q=$category&apiKey=$apiKey';
 
-    if (response.statusCode == 200) {
-      final body = jsonDecode(response.body);
-      return CategoriesNewsModel.fromJson(body);
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (kDebugMode) {
+        print(response.body);
+      }
+
+      if (response.statusCode == 200) {
+        final body = jsonDecode(response.body);
+        return CategoriesNewsModel.fromJson(body);
+      } else {
+        throw Exception('Failed to fetch category news');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
     }
-    throw Exception('Error');
   }
 }
