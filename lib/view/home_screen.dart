@@ -2187,7 +2187,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      // backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -2196,7 +2196,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             SliverAppBar(
               floating: true,
               pinned: true,
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               elevation: 0,
               expandedHeight: 100,
               flexibleSpace: FlexibleSpaceBar(
