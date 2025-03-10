@@ -1367,7 +1367,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           newsDesc: article.description.toString(),
           newsContent: article.content.toString(),
           newsSource: article.source!.name.toString(),
-          // heroTag: 'news_${article.title}',
+          heroTag: 'news_${article.title}',
         ),
       ),
     );

@@ -586,7 +586,7 @@ class NewsDetailsScreen extends StatefulWidget {
   final String newsDesc;
   final String newsContent;
   final String newsSource;
-  // final String heroTag;
+  final String heroTag;
 
   const NewsDetailsScreen({
     Key? key,
@@ -597,7 +597,7 @@ class NewsDetailsScreen extends StatefulWidget {
     required this.newsDesc,
     required this.newsContent,
     required this.newsSource,
-    // required this.heroTag,
+    required this.heroTag,
   }) : super(key: key);
 
   @override
@@ -796,27 +796,30 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen>
                   children: [
                     // Background image with Hero animation and parallax effect
                     Positioned.fill(
-                      child: Transform.scale(
-                        scale: 1 + (_scrollProgress * 0.3),
-                        child: CachedNetworkImage(
-                          imageUrl: widget.newsImage,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Shimmer.fromColors(
-                            baseColor: Colors.grey.shade300,
-                            highlightColor: Colors.grey.shade100,
-                            period: const Duration(milliseconds: 1200),
-                            child: Container(
-                              color: Colors.white,
+                      child: Hero(
+                        tag: widget.heroTag,
+                        child: Transform.scale(
+                          scale: 1 + (_scrollProgress * 0.3),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.newsImage,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              period: const Duration(milliseconds: 1200),
+                              child: Container(
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            color: Colors.grey.shade200,
-                            child: Center(
-                              child: Icon(
-                                Icons.error_outline_rounded,
-                                color: Colors.red.shade400,
-                                size: 50,
-                              ).animate().shake(),
+                            errorWidget: (context, url, error) => Container(
+                              color: Colors.grey.shade200,
+                              child: Center(
+                                child: Icon(
+                                  Icons.error_outline_rounded,
+                                  color: Colors.red.shade400,
+                                  size: 50,
+                                ).animate().shake(),
+                              ),
                             ),
                           ),
                         ),
