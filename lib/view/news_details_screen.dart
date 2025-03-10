@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/widgets/news_details_app_bar.dart';
-import 'package:news_app/widgets/news_details_header.dart';
 import 'package:news_app/widgets/news_details_content.dart';
-
+import 'package:news_app/widgets/news_details_header.dart';
 import 'package:news_app/widgets/releated_articles.dart';
 
 class NewsDetailsScreen extends StatefulWidget {
