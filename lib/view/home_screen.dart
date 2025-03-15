@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
@@ -57,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               pinned: true,
               elevation: 0,
               expandedHeight: 100,
+              backgroundColor: Colors.grey[50],
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
                   'News Today',

@@ -190,9 +190,15 @@ class LatestNewsList extends StatelessWidget {
                     ),
                   ),
                 )
-                    .animate(delay: Duration(milliseconds: index * 700))
-                    .fadeIn(duration: 900.ms)
-                    .slideX(begin: index.isEven ? -20 : 20, end: 0),
+                    .animate(delay: Duration(milliseconds: index * 300))
+                    .fadeIn(
+                      duration: 1200.ms,
+                      curve: Curves.easeOutCubic,
+                    )
+                    .slideX(
+                      begin: index.isEven ? -40 : 40,
+                      end: 0,
+                    ),
               );
             },
             childCount: snapshot.data!.articles!.length,
